@@ -1,0 +1,881 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Affairs | GM University</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #FEFED2 0%, #FAECC1 100%);
+            color: #4e0000;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header Section */
+        .header {
+            background: linear-gradient(135deg, #4e0000 0%, #7a0000 50%, #a50000 100%);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><radialGradient id="g" cx="20" cy="20" r="20"><stop stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="1" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><rect width="100" height="20" fill="url(%23g)"/></svg>');
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .university-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 48px;
+            transition: transform 0.3s ease;
+        }
+
+        .university-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            font-weight: 300;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Director Message */
+        .director-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .director-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .director-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .director-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #4e0000, #7a0000, #a50000);
+        }
+
+        .director-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .director-image {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 4px solid #FAECC1;
+            margin-right: 30px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .director-image:hover {
+            transform: rotate(5deg) scale(1.05);
+        }
+
+        .director-info h2 {
+            color: #4e0000;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .director-info .title {
+            color: #7a0000;
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .director-message {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #5a1a1a;
+        }
+
+        /* Leadership Team */
+        .leadership-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #4e0000;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, #4e0000, #a50000);
+            border-radius: 2px;
+        }
+
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .leader-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .leader-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .leader-card:hover::before {
+            left: 100%;
+        }
+
+        .leader-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .leader-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            border: 4px solid #FAECC1;
+            transition: transform 0.3s ease;
+            object-fit: cover;
+        }
+
+        .leader-card:hover .leader-avatar {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .leader-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #4e0000;
+            margin-bottom: 8px;
+        }
+
+        .leader-position {
+            color: #7a0000;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* Student Council */
+        .council-section {
+            background: white;
+            padding: 80px 20px;
+            margin: 60px 0;
+        }
+
+        .council-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .council-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .council-member {
+            background: linear-gradient(135deg, #FEFED2 0%, #FAECC1 100%);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .council-member::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, #4e0000, #7a0000, #a50000);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 15px;
+        }
+
+        .council-member:hover::before {
+            opacity: 0.05;
+        }
+
+        .council-member:hover {
+            transform: translateY(-8px);
+            border-color: #7a0000;
+            box-shadow: 0 15px 35px rgba(122, 0, 0, 0.2);
+        }
+
+        .council-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease;
+            object-fit: cover;
+            border: 3px solid #FAECC1;
+        }
+
+        .council-member:hover .council-avatar {
+            transform: scale(1.1);
+        }
+
+        .council-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #4e0000;
+            margin-bottom: 5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .council-role {
+            color: #7a0000;
+            font-weight: 500;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .director-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .director-image {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+
+            .leadership-grid,
+            .council-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 1200px) {
+    .header-content,
+    .header > div {
+        max-width: 100% !important;
+        padding: 0 10px !important;
+    }
+    .leadership-section,
+    .director-section,
+    .council-section {
+        max-width: 100% !important;
+        padding: 0 10px !important;
+    }
+    .gallery-grid {
+        max-width: 100% !important;
+        padding: 0 10px !important;
+    }
+}
+@media (max-width: 900px) {
+    .header > div {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+    }
+    .university-logo {
+        margin: 0 auto 20px !important;
+    }
+    .header h1,
+    .header .subtitle {
+        text-align: left !important;
+        font-size: 2rem !important;
+    }
+    .leadership-grid,
+    .council-grid {
+        grid-template-columns: 1fr !important;
+        gap: 18px !important;
+    }
+    .gallery-grid {
+        flex-direction: column !important;
+        align-items: center !important;
+    }
+    .gallery-item {
+        width: 90vw !important;
+    }
+    .testimonial-card > div:first-child img {
+        width: 180px !important;
+        height: 220px !important;
+    }
+    #testimonial-cards {
+        flex-direction: column !important;
+        max-width: 100% !important;
+    }
+}
+@media (max-width: 600px) {
+    .header {
+        padding: 30px 5px !important;
+    }
+    .header h1 {
+        font-size: 1.3rem !important;
+    }
+    .header .subtitle {
+        font-size: 1rem !important;
+    }
+    .university-logo {
+        width: 80px !important;
+        height: 80px !important;
+        font-size: 32px !important;
+    }
+    .director-card {
+        padding: 18px !important;
+    }
+    .leader-card {
+        padding: 14px !important;
+    }
+    .council-member {
+        padding: 12px !important;
+    }
+    .testimonial-card > div:first-child img {
+        width: 120px !important;
+        height: 140px !important;
+    }
+    #testimonial-slider {
+        padding: 20px 0 !important;
+        min-height: 220px !important;
+    }
+    #testimonial-cards {
+        border-radius: 10px !important;
+        box-shadow: 0 4px 12px rgba(122,0,0,0.08) !important;
+    }
+    .gallery-header h1 {
+        font-size: 1.3rem !important;
+    }
+    .gallery-header p {
+        font-size: 0.9rem !important;
+    }
+}
+
+        /* Animation Classes */
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .slide-in-left {
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .slide-in-right {
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+    </style>
+    <style>
+        /* Enhanced Logo Animation & Hover */
+        #sa-logo {
+            animation: logoPopIn 1.2s cubic-bezier(.77,0,.18,1);
+        }
+        @keyframes logoPopIn {
+            0% { opacity: 0; transform: scale(0.7) rotate(-10deg); }
+            60% { opacity: 1; transform: scale(1.15) rotate(8deg); }
+            80% { transform: scale(0.95) rotate(-4deg); }
+            100% { opacity: 1; transform: scale(1) rotate(0deg); }
+        }
+        #sa-logo:hover {
+            transform: scale(1.08) rotate(6deg);
+            box-shadow: 0 12px 32px rgba(122,0,0,0.18);
+            background: rgba(255,255,255,0.18);
+        }
+        #sa-logo img:hover {
+            transform: scale(1.08) rotate(-6deg);
+        }
+        /* Attractive Button Hover Animations */
+        a, button {
+            transition: box-shadow 0.3s, transform 0.3s, background 0.3s, color 0.3s;
+        }
+        a:hover, button:hover {
+            box-shadow: 0 4px 16px rgba(122,0,0,0.13);
+            transform: translateY(-2px) scale(1.04);
+        }
+        /* Card Hover Animations */
+        .leader-card:hover, .council-member:hover {
+            box-shadow: 0 24px 48px rgba(122,0,0,0.13);
+            transform: translateY(-12px) scale(1.03);
+        }
+        /* Testimonial Card Animation */
+        .testimonial-card {
+            transition: none;
+        }
+        .testimonial-card:hover {
+            box-shadow: none;
+            transform: none;
+        }
+        /* Gallery Button Animation (if present) */
+        .gallery-btn {
+            transition: background 0.3s, color 0.3s, box-shadow 0.3s, transform 0.3s;
+        }
+        .gallery-btn:hover {
+            background: #fff3e0 !important;
+            color: #a50000 !important;
+            box-shadow: 0 4px 16px rgba(122,0,0,0.13);
+            transform: scale(1.07);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section (inline CSS) -->
+    <div style="background: linear-gradient(135deg, #4e0000 0%, #7a0000 50%, #a50000 100%); color: white; padding: 60px 20px; text-align: left; position: relative; overflow: hidden; animation: fadeIn 1s ease-in;">
+        <div style="position: relative; z-index: 2; display: flex; align-items: center; max-width: 900px; margin-left: 0;">
+            <div id="sa-logo" style="width: 140px; height: 140px; border-radius: 50%; border: 4px solid rgba(255,255,255,0.3); background: rgba(255,255,255,0.13); backdrop-filter: blur(12px); display: flex; align-items: center; justify-content: center; font-size: 48px; transition: transform 0.4s cubic-bezier(.77,0,.18,1), box-shadow 0.4s; margin-right: 32px; box-shadow: 0 6px 24px rgba(122,0,0,0.13); cursor: pointer;">
+                <img src="photos(SA)\SALOGO\WhatsApp Image 2025-08-03 at 10.23.52_f5771f4b.jpg" alt="Student Affairs Logo" style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; transition: transform 0.4s cubic-bezier(.77,0,.18,1);">
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: flex-start; position: relative; width: 100%;">
+                <h1 style="font-size: 3rem; font-weight: 700; margin-bottom: 15px; text-shadow: 0 4px 8px rgba(0,0,0,0.3); text-align: left;">Student Affairs</h1>
+                <p style="font-size: 1.2rem; font-weight: 300; opacity: 0.9; max-width: 600px; margin: 0; text-align: left;">Igniting Innovation, Inspiring Transformation - Empowering Student Success at GM University</p>
+               <!-- <a href="student-affairs-gallery.html" target="_blank" style="position: absolute; right: 0; bottom: 0; background: #FAECC1; color: #4e0000; font-weight: 600; border-radius: 6px; padding: 8px 18px; text-decoration: none; font-size: 1rem; box-shadow: 0 2px 8px rgba(122,0,0,0.08); border: 1px solid #a50000; margin-left: 10px; transition: background 0.2s;">Student Affairs Gallery</a> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Director's Message -->
+    <div class="director-section slide-in-left">
+        <div class="director-card">
+            <div class="director-header">
+                <img src="photos(SA)\image.png" alt="Director" class="director-image">
+                <div class="director-info">
+                    <h2>Director's Message</h2>
+                    <p class="title">Leading Student Excellence</p>
+                </div>
+            </div>
+            <div class="director-message">
+                <p>Dear Students, It is with great pleasure and excitement that I extend a warm welcome to each one of you as you embark on the next chapter of your academic journey here at GM University. Whether you are a returning student or joining us for the first time, we are thrilled to have you as part of our vibrant and diverse community.</p>
+                
+                <p>As the Director of Student Affairs, I want to assure you that GM University is committed to providing you with an enriching and transformative learning experience. Our dedicated faculty and staff are here to support you in every step of your academic and personal development, ensuring that you make the most of your time with us.</p>
+                
+                <p>Remember, your success is our priority. If you ever need guidance, support, or have any concerns, our faculty and staff are here to assist you. Approach your studies with dedication, curiosity, and a willingness to learn, and you will undoubtedly excel in your chosen field.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leadership Team -->
+    <div class="leadership-section slide-in-right">
+        <div class="section-title">
+            <h2>Leadership Team</h2>
+        </div>
+        <div class="leadership-grid">
+            <div class="leader-card">
+                <img src="photos(SA)\Santhosh.jpg" alt="Mr. Santoshkumar M" class="leader-avatar">
+                <h3 class="leader-name">Mr. Santoshkumar M</h3>
+                <p class="leader-position">Deputy Director</p>
+            </div>
+            <div class="leader-card">
+                <img src="photos(SA)\IMRAN KHAN.jpg" alt="Mr.IMRAN KHAN" class="leader-avatar">
+                <h3 class="leader-name">MR.Imran Khan </h3>
+                <p class="leader-position">Deputy Director</p>
+            </div>
+            <div class="leader-card">
+                <img src="photos(SA)\AJJAIAH.jpg" alt="Mr. Ajjaiah G" class="leader-avatar">
+                <h3 class="leader-name">Mr. Ajjaiah G</h3>
+                <p class="leader-position">Director of Physical Education</p>
+            </div>
+            <div class="leader-card">
+                <img src="photos(SA)\ASHOK S T.jpg" alt="Mr. Ashok" class="leader-avatar">
+                <h3 class="leader-name">Mr. Ashok</h3>
+                <p class="leader-position">NSS Coordinator</p>
+            </div>
+        </div>
+
+
+   
+
+    <!-- Student Affairs -->
+    <div class="council-section">
+        <div class="council-container">
+            <div class="section-title">
+                <h2>Student Affairs</h2>
+            </div>
+
+            <!-- Executive Committee -->
+            <h3 style="text-align: center; color: #4e0000; font-size: 1.8rem; margin: 40px 0 20px;">Executive Committee</h3>
+            <div class="council-grid">
+                <div class="council-member">
+                    <a href="https://www.linkedin.com/in/yashwanthvsdevang/" target="_blank">
+                        <img src="photos(SA)\Yashwanth.jpg" alt="Yashwanth V S Devang" class="council-avatar">
+                    </a>
+                    <h4 class="council-name">Yashwanth V S Devang</h4>
+                    <p class="council-role">President</p>
+                </div>
+                <div class="council-member">
+                    <a href="https://www.linkedin.com/in/rahul-r-gadgimata/" target="_blank">
+                        <img src="photos(SA)\Rahul.jpg" alt="Rahul R Gadgimata" class="council-avatar">
+                    </a>
+                    <h4 class="council-name">Rahul R Gadgimata</h4>
+                    <p class="council-role">General Secretary</p>
+                </div>
+                <div class="council-member">
+                    <a href="https://www.linkedin.com/in/sachin-mp/" target="_blank">
+                        <img src="photos(SA)\SACHIN MP.jpg" alt="Sachin M P" class="council-avatar">
+                    </a>
+                    <h4 class="council-name">Sachin M P</h4>
+                    <p class="council-role">Treasurer</p>
+                </div>
+            </div>
+
+            <!-- Technical Secretaries -->
+            <h3 style="text-align: center; color: #4e0000; font-size: 1.8rem; margin: 40px 0 20px;">Technical Secretaries</h3>
+            <div class="council-grid">
+                <div class="council-member">
+                    <a href="https://www.linkedin.com/in/abhiramgirishnaik/" target="_blank">
+                        <img src="photos(SA)\Abhiram.jpg" alt="Abhiram Girish Naik" class="council-avatar">
+                    </a>
+                    <h4 class="council-name">Abhiram Girish Naik</h4>
+                    <p class="council-role">Technical Secretary</p>
+                </div>
+                <div class="council-member">
+                    <a href="https://www.linkedin.com/in/sudarshana-v-d/" target="_blank">
+                        <img src="photos(SA)\Sudharshan (2).jpg" alt="Sudharshan" class="council-avatar">
+                    </a>
+                    <h4 class="council-name">Sudharshan</h4>
+                    <p class="council-role">Technical Secretary</p>
+                </div>
+            </div>
+
+            <!-- Cultural Secretaries -->
+            <h3 style="text-align: center; color: #4e0000; font-size: 1.8rem; margin: 40px 0 20px;">Cultural Secretaries</h3>
+            <div class="council-grid">
+                <div class="council-member">
+                    <a href="https://www.linkedin.com/in/jayadeva-m-r-b7aa10298/" target="_blank">
+                        <img src="photos(SA)/Jaydev.jpg" alt="Jayadev M R" class="council-avatar">
+                    </a>
+                    <h4 class="council-name">Jayadev M R</h4>
+                    <p class="council-role">Cultural Secretary</p>
+                </div>
+                <div class="council-member">
+                    <a href="https://www.linkedin.com/in/sinchana-m-b48996362/" target="_blank">
+                        <img src="photos(SA)/Sinchana.jpg" alt="Sinchana M" class="council-avatar">
+                    </a>
+                    <h4 class="council-name">Sinchana M</h4>
+                    <p class="council-role">Cultural Secretary</p>
+                </div>
+            </div>
+
+            <!-- Sports Secretaries -->
+            <h3 style="text-align: center; color: #4e0000; font-size: 1.8rem; margin: 40px 0 20px;">Sports Secretaries</h3>
+            <div class="council-grid">
+                <div class="council-member">
+                    <a href="https://www.linkedin.com/in/gurushankar-as-57aa13298/" target="_blank">
+                        <img src="photos(SA)/Gurushankar  AS.jpg" alt="Gurushankar A S" class="council-avatar">
+                    </a>
+                    <h4 class="council-name">Gurushankar A S</h4>
+                    <p class="council-role">Sports Secretary</p>
+                </div>
+                <div class="council-member">
+                    <img src="photos(SA)/KUMAR (2).jpg" alt="Kumar Mopgar" class="council-avatar">
+                    <h4 class="council-name">Kumar Mopgar</h4>
+                    <p class="council-role">Sports Secretary</p>
+                </div>
+            </div>
+
+            <!-- EACS Secretaries -->
+            <h3 style="text-align: center; color: #4e0000; font-size: 1.8rem; margin: 40px 0 20px;">EACS Secretaries</h3>
+            <div class="council-grid">
+                <div class="council-member">
+                    <a href="https://www.linkedin.com/in/harish-gowda-s-k-b3a017275/" target="_blank">
+                        <img src="photos(SA)\Harish.jpg" alt="Harish Gowda S K " class="council-avatar">
+                    </a>
+                    <h4 class="council-name">Harish Gowda S K </h4>
+                    <p class="council-role">EACS Secretary</p>
+                </div>
+                <div class="council-member">
+                    <a href="https://www.linkedin.com/in/ashish-rout-685612312/" target="_blank">
+                        <img src="photos(SA)\Ashish.jpg" alt="EACS Member 2" class="council-avatar">
+                    </a>
+                    <h4 class="council-name">Ashish ROUT
+
+                    </h4>
+                    <p class="council-role">EACS Secretary</p>
+                </div>
+            </div>
+
+            <!-- Media Team -->
+            <h3 style="text-align: center; color: #4e0000; font-size: 1.8rem; margin: 40px 0 20px;">Media Team</h3>
+            <div class="council-grid">
+                <div class="council-member">
+                    <a href="https://www.linkedin.com/in/jeevan-hosamani-43517b2a0?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">
+                        <img src="photos(SA)\JEEVAN.jpg" alt="JEEVAN" class="council-avatar">
+                    </a>
+                    <h4 class="council-name">JEEVAN</h4>
+                    <p class="council-role">Media Team</p>
+                </div>
+                <div class="council-member">
+                    <a href="https://www.linkedin.com/in/ashrith-b-a-7a06b6298/" target="_blank">
+                        <img src="photos(SA)\Ashrith B A - ashrith arya.jpg" alt="Ashrith B A" class="council-avatar">
+                    </a>
+                    <h4 class="council-name">Ashrith B A</h4>
+                    <p class="council-role">Media Team</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- Student Activities Section -->
+    <div style="max-width: 1200px; margin: 0 auto 60px; padding: 0 20px;">
+        <h2 style="color: #4e0000; font-size: 2rem; margin-bottom: 20px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Student Activities</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 30px;">
+            <div style="flex: 1 1 220px; min-width: 220px; background: #fff; border: 1px solid #FAECC1; border-radius: 12px; padding: 28px 20px; display: flex; flex-direction: column; align-items: flex-start; box-shadow: 0 4px 16px rgba(122,0,0,0.07);">
+                <i class="fa-solid fa-users" style="color: #007bff; font-size: 2rem; margin-bottom: 12px;"></i>
+                <span style="font-weight: 600; font-size: 1.1rem; margin-bottom: 8px; color: #4e0000;">Clubs</span>
+                  <a href="https://www.gmu.ac.in/campus_life_at_gmu" target="_blank" style="text-decoration: none; margin-top: 10px;">
+                    <button style="background: none; border: 1px solid #007bff; color: #007bff; border-radius: 5px; padding: 4px 18px; font-size: 1rem; cursor: pointer;">Explore</button>
+                </a>
+            </div>
+            <div style="flex: 1 1 220px; min-width: 220px; background: #fff; border: 1px solid #FAECC1; border-radius: 12px; padding: 28px 20px; display: flex; flex-direction: column; align-items: flex-start; box-shadow: 0 4px 16px rgba(122,0,0,0.07);">
+                <i class="fa-solid fa-book" style="color: #28a745; font-size: 2rem; margin-bottom: 12px;"></i>
+                <span style="font-weight: 600; font-size: 1.1rem; margin-bottom: 8px; color: #4e0000;">Blogs</span>
+                  <a href="https://www.gmu.ac.in/student_blogs" target="_blank" style="text-decoration: none; margin-top: 10px;">
+                    <button style="background: none; border: 1px solid #28a745; color: #28a745; border-radius: 5px; padding: 4px 18px; font-size: 1rem; cursor: pointer;">Explore</button>
+                </a>
+            </div>
+            <div style="flex: 1 1 220px; min-width: 220px; background: #fff; border: 1px solid #FAECC1; border-radius: 12px; padding: 28px 20px; display: flex; flex-direction: column; align-items: flex-start; box-shadow: 0 4px 16px rgba(122,0,0,0.07);">
+                <i class="fa-solid fa-newspaper" style="color: #dc3545; font-size: 2rem; margin-bottom: 12px;"></i>
+                <span style="font-weight: 600; font-size: 1.1rem; margin-bottom: 8px; color: #4e0000;">Newsletters</span>
+                  <a href="https://www.gmu.ac.in/press_and_media" target="_blank" style="text-decoration: none; margin-top: 10px;">
+                    <button style="background: none; border: 1px solid #dc3545; color: #dc3545; border-radius: 5px; padding: 4px 18px; font-size: 1rem; cursor: pointer;">Explore</button>
+                </a>
+            </div>
+            <div style="flex: 1 1 220px; min-width: 220px; background: #fff; border: 1px solid #FAECC1; border-radius: 12px; padding: 28px 20px; display: flex; flex-direction: column; align-items: flex-start; box-shadow: 0 4px 16px rgba(122,0,0,0.07);">
+                <i class="fa-solid fa-user-check" style="color: #ffc107; font-size: 2rem; margin-bottom: 12px;"></i>
+                <span style="font-weight: 600; font-size: 1.1rem; margin-bottom: 8px; color: #4e0000;">Student Affairs</span>
+                 <a href="https://www.gmu.ac.in/assets/downloadmaterial/Students%20Affairs%20Handbook.pdf" target="_blank" style="text-decoration: none; margin-top: 10px;">
+                    <button style="background: none; border: 1px solid #ffc107; color: #ffc107; border-radius: 5px; padding: 4px 18px; font-size: 1rem; cursor: pointer;">Explore</button>
+                </a>
+            </div>
+            <div style="flex: 1 1 220px; min-width: 220px; background: #fff; border: 1px solid #FAECC1; border-radius: 12px; padding: 28px 20px; display: flex; flex-direction: column; align-items: flex-start; box-shadow: 0 4px 16px rgba(122,0,0,0.07);">
+                <i class="fa-solid fa-calendar-days" style="color: #007bff; font-size: 2rem; margin-bottom: 12px;"></i>
+                <span style="font-weight: 600; font-size: 1.1rem; margin-bottom: 8px; color: #4e0000;">Campus Events</span>
+                 <a href="https://www.gmu.ac.in/events" target="_blank" style="text-decoration: none; margin-top: 10px;">
+                    <button style="background: none; border: 1px solid #007bff; color: #007bff; border-radius: 5px; padding: 4px 18px; font-size: 1rem; cursor: pointer;">Explore</button>
+                </a>
+            </div>
+            <div style="flex: 1 1 220px; min-width: 220px; background: #fff; border: 1px solid #FAECC1; border-radius: 12px; padding: 28px 20px; display: flex; flex-direction: column; align-items: flex-start; box-shadow: 0 4px 16px rgba(122,0,0,0.07);">
+                <i class="fa-solid fa-medal" style="color: #6c757d; font-size: 2rem; margin-bottom: 12px;"></i>
+                <span style="font-weight: 600; font-size: 1.1rem; margin-bottom: 8px; color: #4e0000;">Student Achievements</span>
+                <a href="https://www.gmu.ac.in/StudentActivitiesDetails" target="_blank" style="text-decoration: none; margin-top: 10px;">
+                    <button style="background: none; border: 1px solid #6c757d; color: #6c757d; border-radius: 5px; padding: 4px 18px; font-size: 1rem; cursor: pointer;">Explore</button>
+                </a>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    
+    <!-- Testimonial/Experience Card (Student Affairs) -->
+    <div id="testimonial-slider" style="background: #FAECC1; display: flex; align-items: center; justify-content: center; padding: 50px 0; margin: 40px 0; min-height: 400px;">
+        <div id="testimonial-cards" style="background: #FAECC1; display: flex; max-width: 900px; width: 100%; border-radius: 20px; box-shadow: 0 10px 30px rgba(122,0,0,0.08); overflow: hidden; position: relative; margin: 0 auto;">
+            <!-- Card 1 -->
+            <div class="testimonial-card" style="display: flex; width: 100%; transition: transform 0.7s cubic-bezier(.77,0,.18,1);">
+                <div style="flex: 0 0 320px; display: flex; align-items: center; justify-content: center; background: #FEFED2;">
+                    <img src="photos(SA)\yashaswini ds .jpg" alt="Yashaswini D Shivakumar" style="width: 260px; height: 340px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 16px rgba(122,0,0,0.10);">
+                </div>
+                <div style="flex: 1; padding: 40px 30px; color: #4e0000;">
+                    <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 18px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Yashaswini D Shivakumar</h2>
+                    <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 30px;">Student Affairs was a defining experience that shaped my leadership skills, tested my resolve, and ignited my passion for creating positive change. From organizing campus events to advocating for student rights, I worked tirelessly to amplify student voices and foster a sense of community. Through collaborations, negotiations, and problem solving, I developed a unique blend of creativity, strategic thinking, and interpersonal skills. This journey not only helped me grow as a leader but also instilled in me a lifelong commitment to responsibility, leadership, confidence and empowering others.</p>
+                </div>
+            </div>
+            <!-- Card 2 -->
+            <div class="testimonial-card" style="display: none; width: 100%; transition: transform 0.7s cubic-bezier(.77,0,.18,1);">
+                <div style="flex: 0 0 320px; display: flex; align-items: center; justify-content: center; background: #FEFED2;">
+                    <img src="photos(SA)\anhiram new .jpg" alt="Abhiram Girish Naik " style="width: 260px; height: 340px; object-fit: cover; border-radius: 10px; box-shadow: 0 4px 16px rgba(122,0,0,0.10);">
+                </div>
+                <div style="flex: 1; padding: 40px 30px; color: #4e0000;">
+                    <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: 18px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Abhiram Girish Naik</h2>
+                    <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 30px;">Being part of the Student Affairs gave me the opportunity to work with talented peers and contribute to the university's growth. The experience taught me the importance of teamwork, communication, and perseverance. I am grateful for the chance to serve and make a difference in our campus community.</p>
+                </div>
+            </div>
+            <!-- Navigation -->
+            <div style="position: absolute; bottom: 30px; right: 30px; display: flex; gap: 10px;">
+                <button id="testimonial-prev" style="background: none; border: 2px solid #4e0000; color: #4e0000; font-size: 1.3rem; width: 40px; height: 40px; border-radius: 6px; cursor: pointer;">&#60;</button>
+                <button id="testimonial-next" style="background: none; border: 2px solid #4e0000; color: #4e0000; font-size: 1.3rem; width: 40px; height: 40px; border-radius: 6px; cursor: pointer;">&#62;</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        // Add smooth scrolling and animation triggers
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all animated elements
+            document.querySelectorAll('.leader-card, .council-member').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+
+            // Add staggered animation delay
+            document.querySelectorAll('.council-member').forEach((el, index) => {
+                el.style.transitionDelay = `${index * 0.1}s`;
+            });
+
+            // Testimonial slider logic
+            let currentTestimonial = 0;
+            const testimonialCards = document.querySelectorAll('#testimonial-cards .testimonial-card');
+            const totalTestimonials = testimonialCards.length;
+            const showTestimonial = idx => {
+                testimonialCards.forEach((card, i) => {
+                    card.style.display = (i === idx) ? 'flex' : 'none';
+                });
+            };
+            showTestimonial(currentTestimonial);
+            document.getElementById('testimonial-prev').onclick = function() {
+                currentTestimonial = (currentTestimonial - 1 + totalTestimonials) % totalTestimonials;
+                showTestimonial(currentTestimonial);
+            };
+            document.getElementById('testimonial-next').onclick = function() {
+                currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
+                showTestimonial(currentTestimonial);
+            };
+            setInterval(function() {
+                currentTestimonial = (currentTestimonial + 1) % totalTestimonials;
+                showTestimonial(currentTestimonial);
+            }, 4000);
+        });
+    </script>
+</body>
+</html>
